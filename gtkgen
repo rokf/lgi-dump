@@ -1,0 +1,34 @@
+#!/usr/bin/env lua
+
+--[[
+
+  gtkgen
+
+  Description: Generates a template with an empty window
+  Usage: ./gtkgen filename_here
+
+]]
+
+local template = [[
+local lgi = require 'lgi'
+local Gtk = lgi.Gtk
+
+local window = Gtk.Window {
+  width_request = 500,
+  height_request = 400,
+  title = '%s'
+}
+
+function window:on_destroy()
+  Gtk.main_quit()
+end
+
+window:show_all()
+Gtk:main()
+]]
+
+local file = io.open('examples/'.. arg[1] .. '.lua','w')
+file:write(string.format(template, string.upper(arg[1])))
+file:close()
+
+print('Generated ' .. 'examples/'.. arg[1] .. '.lua')
