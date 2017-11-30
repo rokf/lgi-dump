@@ -10,7 +10,7 @@ local color = Gdk.RGBA {
   alpha = 1
 }
 
-local drawing_area = Gtk.DrawingArea {}
+local drawing_area = Gtk.DrawingArea()
 
 function drawing_area:on_draw(cr)
   cr:set_source_rgba(color)
