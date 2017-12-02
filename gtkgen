@@ -27,6 +27,16 @@ window:show_all()
 Gtk:main()
 ]]
 
+-- check existence
+do
+  local file = io.open('examples/'.. arg[1] .. '.lua','r')
+  if file ~= nil then
+    print('File already exists! No changes were made.')
+    file:close()
+    return
+  end
+end
+
 local file = io.open('examples/'.. arg[1] .. '.lua','w')
 file:write(string.format(template, string.upper(arg[1])))
 file:close()
